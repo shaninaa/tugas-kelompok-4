@@ -29,6 +29,7 @@
                     <tr>
                         <th>No</th>
                         <th>ID Pengguna</th>
+                        <th>Hak Akses</th>
                         <th>Nama Pengguna</th>
                         <th>Nama Depan</th>
                         <th>Nama Belakang</th>
@@ -42,6 +43,7 @@
                         <tr>
                             <td>{{ $loop->iteration}}</td>
                             <td>{{ $data->id_pengguna}}</td>
+                            <td>{{ $data->id_akses}}</td>
                             <td>{{ $data->nama_pengguna}}</td>
                             <td>{{ $data->nama_depan}}</td>
                             <td>{{ $data->nama_belakang}}</td>
@@ -52,7 +54,7 @@
                                 @csrf
                                 {{ method_field('DELETE')}}
                                 <button style="float: right;" class="fa fa-trash btn btn-sm btn-danger mr-2 mb-2"></button>
-                                <a href="#" style="float: right;" class=" fa fa-edit btn btn-sm btn-primary mr-2 mb-2 ">
+                                <a href="/pengguna/editpengguna/{{$data->id_pengguna}}" style="float: right;" class=" fa fa-edit btn btn-sm btn-primary mr-2 mb-2 ">
                                   Edit
                                 </a>
                               </form>

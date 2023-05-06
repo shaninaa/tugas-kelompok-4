@@ -23,7 +23,9 @@ class PenggunaController extends Controller
             'submenu' => 'pengguna',
             'pengguna' => $pengguna
             );
-        return view('admin.pengguna', $data);
+        return view('admin.pengguna', $data,[
+            'hakakses' => hakakses::all()
+        ]);
     }
 
     public function indexadd(){
@@ -51,6 +53,35 @@ class PenggunaController extends Controller
         ]);
 
     return redirect('/pengguna')->with('success', 'Data berhasil ditambahkan!');
+    }
+
+    public function editPengguna($id_pengguna)
+    {
+        $pengguna = DB::table('pengguna')->where('id_pengguna', $id_pengguna)->get();
+        $data = array(
+            'menu' => 'pengguna',
+            'submenu' => 'pengguna',
+            'pengguna' => $pengguna
+            );
+        return view('admin.updatepengguna',  $data,[
+            'hakakses' => hakakses::all()
+        ]);
+    }
+
+    public function updatePengguna(Request $post)
+    {
+        DB::table('pengguna')->where('id_pengguna', $post->id_pengguna)->update([
+			'id_pengguna' => $post->id_pengguna,
+            'id_akses' => $post->id_akses,
+            'nama_pengguna' => $post->nama_pengguna,
+            'password' => $post->password,
+            'nama_depan' => $post->nama_depan,
+            'nama_belakang' => $post->nama_belakang,
+            'no_hp' => $post->no_hp,
+            'alamat' => $post->alamat
+        ]);
+
+        return redirect('/pengguna')->with('success', 'Data berhasil diupdate!');
     }
 
     public function delete($id_pengguna){

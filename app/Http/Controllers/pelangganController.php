@@ -51,6 +51,32 @@ class PelangganController extends Controller
     return redirect('/pelanggan')->with('success', 'Data berhasil ditambahkan!');
     }
 
+    public function editPelanggan($id_pelanggan)
+    {
+        $pelanggan = DB::table('pelanggan')->where('id_pelanggan', $id_pelanggan)->get();
+        $data = array(
+            'menu' => 'pelanggan',
+            'submenu' => 'pelanggan',
+            'pelanggan' => $pelanggan
+            );
+        return view('admin.updatePelanggan',  $data,[
+            'pengguna' => pengguna::all()
+        ]);
+    }
+
+    public function updatePelanggan(Request $post)
+    {
+        DB::table('pelanggan')->where('id_pelanggan', $post->id_pelanggan)->update([
+			'id_pelanggan' => $post->id_pelanggan,
+            'id_pengguna' => $post->id_pengguna,
+            'nama_pelanggan' => $post->nama_pelanggan,
+            'no_telp' => $post->no_telp,
+            'alamat' => $post->alamat
+        ]);
+
+        return redirect('/pelanggan')->with('success', 'Data berhasil diupdate!');
+    }
+
     public function delete($id_pelanggan){
         $pelanggan = pelanggan::where('id_pelanggan', $id_pelanggan)->first();
         $pelanggan->delete();

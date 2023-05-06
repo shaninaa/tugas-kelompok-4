@@ -46,7 +46,7 @@
                                 @csrf
                                 {{ method_field('DELETE')}}
                                 <button style="float: right;" class="fa fa-trash btn btn-sm btn-danger mr-2 mb-2"></button>
-                                <a href="#" style="float: right;" class=" fa fa-edit btn btn-sm btn-primary mr-2 mb-2 ">
+                                <a href="/hakakses/edithakakses/{{$data->id_akses}}" style="float: right;" class=" fa fa-edit btn btn-sm btn-primary mr-2 mb-2 ">
                                   Edit
                                 </a>
                               </form>
