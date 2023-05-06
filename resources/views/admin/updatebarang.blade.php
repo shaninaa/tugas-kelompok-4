@@ -13,8 +13,12 @@
             <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
           <div class="card-body">
             <div class="form-group">
+              <label>ID Barang</label>
+              <input type="text" class="form-control" name="id_barang" value ="{{ $barang[0]->id_barang }}" readonly>
+            </div>
+            <div class="form-group">
               <label>Nama Barang</label>
-              <input type="text" class="form-control" name="nama_barang" value ="{{ $barang[0]->nama_barang }}"placeholder="Enter Name">
+              <input type="text" class="form-control" name="nama_barang" value ="{{ $barang[0]->nama_barang }}">
             </div>
             <div class="form-group">
               <label>Id Pengguna</label>
@@ -31,11 +35,11 @@
             </div>
             <div class="form-group">
               <label>Keterangan</label>
-              <input type="text" class="form-control" name="keterangan" value ="{{ $barang[0]->keterangan }}" placeholder="Enter Name">
+              <input type="text" class="form-control" name="keterangan" value ="{{ $barang[0]->keterangan }}">
             </div>
             <div class="form-group">
               <label>satuan</label>
-              <input type="text" class="form-control" name="satuan" value ="{{ $barang[0]->satuan }}" placeholder="Enter Name">
+              <input type="text" class="form-control" name="satuan" value ="{{ $barang[0]->satuan }}">
             </div>
             <button class="btn btn-primary mr-1" type="submit" value="Simpan" >Simpan Data</button>
           </div>
