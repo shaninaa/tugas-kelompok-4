@@ -6,6 +6,7 @@ use App\Http\Controllers\HakAksesController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\SupplierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +53,17 @@ Route::get('/barang/editbarang/{id_barang}', [BarangController::class, 'editBara
 Route::post('/barang/updateBarang', [BarangController::class, 'updateBarang']);
 Route::delete('/barang/{id_barang}', [BarangController::class, 'delete']);
 
+//SUPPLIER
+Route::get('/supplier', [SupplierController::class, 'indexdata']);
+Route::get('/supplier/addSupplier', [SupplierController::class, 'indexadd']);
+Route::post('/supplier/addSupplier', [SupplierController::class, 'addSupplier']);
+Route::delete('/supplier/{id_supplier}', [SupplierController::class, 'delete']);
+
+
 Route::post('/jenis/addjenis', [jenisprodukController::class, 'addjenis']);
 Route::delete('/jenis/{id_jenis}', [jenisprodukController::class, 'delete']);
+
+
+
 //PRODUK
 Route::resource('produkadm', produkController::class);
