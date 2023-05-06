@@ -53,7 +53,7 @@ class BarangController extends Controller
 
     public function editBarang($id_barang)
     {
-        $barang = DB::table('barang')->get();
+        $barang = DB::table('barang')->where('id_barang', $id_barang)->get();
         $data = array(
             'menu' => 'barang',
             'submenu' => 'barang',
