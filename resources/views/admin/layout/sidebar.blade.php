@@ -14,11 +14,11 @@
           <li class="nav-item dropdown active">
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-archive"></i><span>Master Data</span></a>
             <ul class="dropdown-menu">
-              <li><a href="#" class="nav-link">Hak Akses</a></li>
-              <li><a href="#" class="nav-link">Pengguna</a></li>
-              <li><a href="#" class="nav-link">Pelanggan</a></li>
+              <li><a href="/hakakses" class="nav-link">Hak Akses</a></li>
+              <li><a href="/pengguna" class="nav-link">Pengguna</a></li>
+              <li><a href="/pelanggan" class="nav-link">Pelanggan</a></li>
               <li><a href="#" class="nav-link">Supplier</a></li>
-              <li><a href="#" class="nav-link">Barang</a></li>
+              <li><a href="/barang" class="nav-link">Barang</a></li>
               <li><a href="#" class="nav-link">Penjualan</a></li>
               <li><a href="#" class="nav-link">Pembelian</a></li>
               <li><a href="/paket_penjualan" class="nav-link">Paket Penjualan</a></li>
