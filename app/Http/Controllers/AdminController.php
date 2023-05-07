@@ -9,6 +9,7 @@ use App\Models\jenisproduk;
 use App\Models\User;
 use App\Models\pesanan;
 use App\Models\pesanan_detail;
+use App\Models\pengguna;
 
 
 class AdminController extends Controller
@@ -51,4 +52,21 @@ class AdminController extends Controller
             );
         return view('admin.datapesanan', $data);
     }
+
+    // Controller Dashboard
+    public function dashboard()
+    {
+        $total_penjualan = DB::table('penjualan')->selectRaw('SUM(harga_jual * quantity) as total_penjualan')->value('total_penjualan');
+        $total_pembelian = DB::table('pembelian')->selectRaw('SUM(harga_pembelian * quantity) as total_pembelian')->value('total_pembelian');
+        $stok_barang = DB::table('pembelian')->selectRaw('SUM(quantity) as total_pembelian')->value('total_pembelian') - DB::table('penjualan')->selectRaw('SUM(quantity) as total_penjualan')->value('total_penjualan');
+        $laba_rugi = $total_penjualan - $total_pembelian;
+
+        return view('admin.homeadmin', [
+            'total_penjualan' => $total_penjualan,
+            'total_pembelian' => $total_pembelian,
+            'stok_barang' => $stok_barang,
+            'laba_rugi' => $laba_rugi
+        ]);
+    }
+
 }
