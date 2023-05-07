@@ -11,46 +11,48 @@
 @section('content')
 <!DOCTYPE html>
 <head>
-    <title>Data Supplier</title>
+    <title>Data Penjualan</title>
 </head>
 <div class="main-content">
   <section class="section">
           <div class="card">
             <div class="card-header">
-              <h4>Supplier</h4>
+              <h4>Penjualan</h4>
             </div>
             <div class="card-body">
                 <div>
-                    <a href="/supplier/addSupplier" style="float: right;" class="btn btn-icon icon-left btn-primary"><i class="fas fa-plus"></i>Tambah Data</a>
+                    <a href="/penjualan/addPenjualan" style="float: right;" class="btn btn-icon icon-left btn-primary"><i class="fas fa-plus"></i>Tambah Data</a>
                 </div>
               <div class="table-responsive">
                 <table class="table table-striped" id="table-1">
                   <thead>
                     <tr>
                         <th>No</th>
-                        <th>id_supplier</th>
-                        <th>nama_supplier</th>
-                        <th>no_telp</th>
-                        <th>alamat</th>
-                        <th>id_pengguna</th>
+                        <th>id_penjualan</th>
+                        <th>Pengguna</th>
+                        <th>Barang</th>
+                        <th>Harga Jual</th>
+                        <th>Quantity</th>
+                        <th>Jumlah Penjualan</th>
                         <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach($supplier as $data)
+                    @foreach($penjualan as $data)
                         <tr>
                             <td>{{ $loop->iteration}}</td>
-                            <td>{{ $data->id_supplier}}</td>
-                            <td>{{ $data->nama_supplier}}</td>
-                            <td>{{ $data->no_telp}}</td>
-                            <td>{{ $data->alamat}}</td>
-                            <td>{{ $data->id_pengguna}}</td>
+                            <td>{{ $data->id_penjualan}}</td>
+                            <td>{{ $data->nama_pengguna}}</td>
+                            <td>{{ $data->nama_barang}}</td>
+                            <td>{{ $data->harga_jual}}</td>
+                            <td>{{ $data->quantity}}</td>
+                            <td>{{ $data->jumlah_jual}}</td>
                             <td>
-                            <form action="/supplier/{{$data->id_supplier}}" method='POST' class="form-inline">
+                            <form action="/penjualan/{{$data->id_penjualan}}" method='POST' class="form-inline">
                                 @csrf
                                 {{ method_field('DELETE')}}
                                 <button style="float: right;" class="fa fa-trash btn btn-sm btn-danger mr-2 mb-2"></button>
-                                <a href="#" style="float: right;" class=" fa fa-edit btn btn-sm btn-primary mr-2 mb-2 ">
+                                <a href="/penjualan/editPenjualan/{{$data->id_penjualan}}" style="float: right;" class=" fa fa-edit btn btn-sm btn-primary mr-2 mb-2 ">
                                   Edit
                                 </a>
                               </form>

@@ -13,17 +13,22 @@ class SupplierController extends Controller
             'menu' => 'supplier',
             'submenu' => ''
             );
-        return view('admin.supplier', $data);
+        return view('admin.supplier.supplier', $data);
     }
 
     public function indexdata(){
-        $supplier = DB::table('supplier')->get();
+
+        $supplier = DB::table('supplier')
+        ->join('pengguna', 'supplier.id_pengguna', '=', 'pengguna.id_pengguna')
+        ->select('supplier.*','pengguna.*')
+        ->get();
+
         $data = array(
             'menu' => 'supplier',
             'submenu' => 'supplier',
             'supplier' => $supplier
             );
-        return view('admin.supplier', $data);
+        return view('admin.supplier.supplier', $data);
     }
 
     public function indexadd(){
@@ -33,7 +38,7 @@ class SupplierController extends Controller
             'submenu' => 'supplier',
             'supplier' => $supplier
             );
-        return view('admin.addSupplier', $data,[
+        return view('admin.supplier.addSupplier', $data,[
             'pengguna' => pengguna::all()
         ]);
     }
@@ -50,10 +55,36 @@ class SupplierController extends Controller
     return redirect('/supplier')->with('success', 'Data berhasil ditambahkan!');
     }
 
+    public function editSupplier($id_supplier)
+    {
+        $supplier = DB::table('supplier')->where('id_supplier', $id_supplier)->get();
+        $data = array(
+            'menu' => 'supplier',
+            'submenu' => 'supplier',
+            'supplier' => $supplier
+            );
+        return view('admin.supplier.updatesupplier',  $data,[
+            'pengguna' => pengguna::all()
+        ]);
+    }
+
+    public function updateSupplier(Request $post)
+    {
+        DB::table('supplier')->where('id_supplier', $post->id_supplier)->update([
+            'id_supplier' => $post->id_supplier,
+            'nama_supplier' => $post->nama_supplier,
+            'no_telp' => $post->no_telp,
+            'alamat' => $post->alamat,
+            'id_pengguna' => $post->id_pengguna
+        ]);
+
+        return redirect('/supplier')->with('success', 'Data berhasil diupdate!');
+    }
+
 
     public function delete($id_supplier){
-        $barang = supplier::where('id_supplier', $id_supplier)->first();
-        $barang->delete();
+        $supplier = supplier::where('id_supplier', $id_supplier)->first();
+        $supplier->delete();
         return redirect('/supplier')->with('success', 'Data berhasil dihapus!');
     }
 

@@ -1,5 +1,5 @@
 @extends('admin.layout.mainlayout')
-@section('page_title','Tambah Jenis Produk')
+@section('page_title','Tambah Data Supplier Produk')
 @section('UD.Sulfi Jaya Shop','')
 
 @section('content')
@@ -27,7 +27,7 @@
             <div class="form-group">
               <label>Id Pengguna</label>
               <select id="id"  class="form-control" name="id_pengguna" required>
-                <option value="" disabled selected>pilih hak Kases</option>
+                <option value="" disabled selected>pilih pengguna</option>
                 @foreach($pengguna as $key)
                   @if(old('id_pengguna') == $key->id_pengguna)
                     <option value="{{ $key->id_pengguna}}" selected>{{ $key->nama_pengguna}}</option>

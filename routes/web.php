@@ -6,7 +6,9 @@ use App\Http\Controllers\HakAksesController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\PenjualanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +60,26 @@ Route::get('/supplier', [SupplierController::class, 'indexdata']);
 Route::get('/supplier/addSupplier', [SupplierController::class, 'indexadd']);
 Route::post('/supplier/addSupplier', [SupplierController::class, 'addSupplier']);
 Route::delete('/supplier/{id_supplier}', [SupplierController::class, 'delete']);
+Route::get('/supplier/editsupplier/{id_supplier}', [SupplierController::class, 'editSupplier']);
+Route::post('/supplier/updateSupplier', [SupplierController::class, 'updateSupplier']);
+
+
+//PEMBELIAN
+Route::get('/pembelian', [PembelianController::class, 'indexdata']);
+Route::get('/pembelian/addPembelian', [PembelianController::class, 'indexadd']);
+Route::post('/pembelian/addPembelian', [PembelianController::class, 'addPembelian']);
+Route::delete('/pembelian/{id_pembelian}', [PembelianController::class, 'delete']);
+Route::get('/pembelian/editPembelian/{id_pembelian}', [PembelianController::class, 'editPembelian']);
+Route::post('/pembelian/updatePembelian', [PembelianController::class, 'updatePembelian']);
+
+
+//PENJUALAN
+Route::get('/penjualan', [PenjualanController::class, 'indexdata']);
+Route::get('/penjualan/addPenjualan', [PenjualanController::class, 'indexadd']);
+Route::post('/penjualan/addPenjualan', [PenjualanController::class, 'addPenjualan']);
+Route::delete('/penjualan/{id_penjualan}', [PenjualanController::class, 'delete']);
+Route::get('/penjualan/editPenjualan/{id_penjualan}', [PenjualanController::class, 'editPenjualan']);
+Route::post('/penjualan/updatePenjualan', [PenjualanController::class, 'updatePenjualan']);
 
 
 Route::post('/jenis/addjenis', [jenisprodukController::class, 'addjenis']);
