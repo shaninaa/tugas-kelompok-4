@@ -1,86 +1,86 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use App\Models\pengguna;
+use App\Models\pelanggan;
 use App\Models\barang;
-use App\Http\Requests\StorebarangRequest;
-use App\Http\Requests\UpdatebarangRequest;
 
 class BarangController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function index(){
+        $data = array(
+            'menu' => 'barang',
+            'submenu' => ''
+            );
+        return view('admin.barang', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function indexdata(){
+        $barang = DB::table('barang')->get();
+        $data = array(
+            'menu' => 'barang',
+            'submenu' => 'barang',
+            'barang' => $barang
+            );
+        return view('admin.barang', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StorebarangRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StorebarangRequest $request)
-    {
-        //
+    public function indexadd(){
+        $barang = DB::table('barang')->get();
+        $data = array(
+            'menu' => 'barang',
+            'submenu' => 'barang',
+            'barang' => $barang
+            );
+        return view('admin.addbarang', $data,[
+            'pengguna' => pengguna::all()
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\barang  $barang
-     * @return \Illuminate\Http\Response
-     */
-    public function show(barang $barang)
-    {
-        //
+    public function addBarang(Request $post){
+        DB::table('barang')->insert([
+            'id_barang' => $post->id_barang,
+            'id_pengguna' => $post->id_pengguna,
+            'nama_barang' => $post->nama_barang,
+            'keterangan' => $post->keterangan,
+            'satuan' => $post->satuan
+        ]);
+
+    return redirect('/barang')->with('success', 'Data berhasil ditambahkan!');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\barang  $barang
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(barang $barang)
+    public function editBarang($id_barang)
     {
-        //
+        $barang = DB::table('barang')->where('id_barang', $id_barang)->get();
+        $data = array(
+            'menu' => 'barang',
+            'submenu' => 'barang',
+            'barang' => $barang
+            );
+        return view('admin.updatebarang',  $data,[
+            'pengguna' => pengguna::all()
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdatebarangRequest  $request
-     * @param  \App\Models\barang  $barang
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdatebarangRequest $request, barang $barang)
+    public function updateBarang(Request $post)
     {
-        //
+        DB::table('barang')->where('id_barang', $post->id_barang)->update([
+			'id_barang' => $post->id_barang,
+            'id_pengguna' => $post->id_pengguna,
+            'nama_barang' => $post->nama_barang,
+            'keterangan' => $post->keterangan,
+            'satuan' => $post->satuan
+        ]);
+
+        return redirect('/barang')->with('success', 'Data berhasil diupdate!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\barang  $barang
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(barang $barang)
-    {
-        //
+    public function delete($id_barang){
+        $barang = barang::where('id_barang', $id_barang)->first();
+        $barang->delete();
+        return redirect('/barang')->with('success', 'Data berhasil dihapus!');
     }
+
 }
