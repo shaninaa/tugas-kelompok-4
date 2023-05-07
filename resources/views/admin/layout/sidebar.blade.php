@@ -21,6 +21,7 @@
               <li><a href="/barang" class="nav-link">Barang</a></li>
               <li><a href="#" class="nav-link">Penjualan</a></li>
               <li><a href="#" class="nav-link">Pembelian</a></li>
+              <li><a href="/paket_penjualan" class="nav-link">Paket Penjualan</a></li>
             </ul>
           </li>
           <li class="nav-item">

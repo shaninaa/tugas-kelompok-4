@@ -2,10 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PaketPenjualanBarangController;
+use App\Http\Controllers\PaketPenjualanController;
 use App\Http\Controllers\HakAksesController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\BarangController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -62,3 +65,11 @@ Route::post('/jenis/addjenis', [jenisprodukController::class, 'addjenis']);
 Route::delete('/jenis/{id_jenis}', [jenisprodukController::class, 'delete']);
 //PRODUK
 Route::resource('produkadm', produkController::class);
+
+//PAKET PENJUALAN
+Route::controller('users', 'UserController');
+Route::get('/paket_penjualan', [PaketPenjualanController::class, 'show']);
+Route::get('/paketPenjualan/addPaketPenjualanBarang',[PaketPenjualanBarangController::class, 'show']);
+Route::post('/paketPenjualan/addPaketPenjualanBarang',[PaketPenjualanBarangController::class, 'store']);
+Route::get('/paketPenjualan/addPaketPenjualan',[PaketPenjualanController::class, 'create']);
+Route::post('/paketPenjualan/addPaketPenjualan',[PaketPenjualanController::class, 'store']);
