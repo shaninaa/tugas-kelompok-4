@@ -17,11 +17,11 @@
               <li><a href="/hakakses" class="nav-link">Hak Akses</a></li>
               <li><a href="/pengguna" class="nav-link">Pengguna</a></li>
               <li><a href="/pelanggan" class="nav-link">Pelanggan</a></li>
-              <li><a href="#" class="nav-link">Supplier</a></li>
+              <li><a href="/supplier" class="nav-link">Supplier</a></li>
               <li><a href="/barang" class="nav-link">Barang</a></li>
-              <li><a href="#" class="nav-link">Penjualan</a></li>
-              <li><a href="#" class="nav-link">Pembelian</a></li>
               <li><a href="/paket_penjualan" class="nav-link">Paket Penjualan</a></li>
+              <li><a href="/penjualan" class="nav-link">Penjualan</a></li>
+              <li><a href="/pembelian" class="nav-link">Pembelian</a></li>
             </ul>
           </li>
           <li class="nav-item">
