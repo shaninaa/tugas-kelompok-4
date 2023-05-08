@@ -94,11 +94,6 @@ Route::post('/penjualan/updatePenjualan', [PenjualanController::class, 'updatePe
 Route::post('/jenis/addjenis', [jenisprodukController::class, 'addjenis']);
 Route::delete('/jenis/{id_jenis}', [jenisprodukController::class, 'delete']);
 
-
-
-//PRODUK
-Route::resource('produkadm', produkController::class);
-
 //PAKET PENJUALAN
 Route::controller('users', 'UserController');
 Route::get('/paket_penjualan', [PaketPenjualanController::class, 'show']);

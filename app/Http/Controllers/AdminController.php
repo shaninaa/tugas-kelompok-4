@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Models\produk;
-use App\Models\jenisproduk;
 use App\Models\User;
 use App\Models\pesanan;
 use App\Models\pesanan_detail;
