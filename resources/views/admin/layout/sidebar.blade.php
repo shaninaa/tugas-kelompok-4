@@ -9,7 +9,7 @@
       <ul class="sidebar-menu">
           <li class="menu-header">Dashboard</li>
           <li class="nav-item">
-            <a href="/admin" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+            <a href="{{ route('admin.homeadmin') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
           </li>
           <li class="nav-item dropdown active">
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-archive"></i><span>Master Data</span></a>
@@ -23,9 +23,6 @@
               <li><a href="/penjualan" class="nav-link">Penjualan</a></li>
               <li><a href="/pembelian" class="nav-link">Pembelian</a></li>
             </ul>
-          </li>
-          <li class="nav-item">
-            <a href="/" class="nav-link"><i class="fa fa-power-off"></i><span>Sign Out</span></a>
           </li>
       </ul>
     </aside>

@@ -1,153 +1,171 @@
 @extends('admin.layout.mainlayout')
+
 @section('page_title','UD.Sulfi Jaya Shop')
 @section('UD.Sulfi Jaya Shop','')
+
 @section('custom_css')
 <!-- DataTables -->
 <link rel="stylesheet" href="{{URL :: to('/')}}/asset/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="{{URL :: to('/')}}/asset/datatables-responsive/css/responsive.bootstrap4.min.css">
+
+<style>
+    .row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      
+    }
+</style>
+
 @endsection
+
 @section('content')
 <div class="main-content">
-  <section class="section">
+    <section class="section">
         <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-12">
-            <div class="card card-statistic-2">
-                <div class="card-stats">
-                <div class="card-stats-title">Order Statistics -
-                    <div class="dropdown d-inline">
-                    <a class="font-weight-600 dropdown-toggle" data-toggle="dropdown" href="#" id="orders-month">August</a>
-                    <ul class="dropdown-menu dropdown-menu-sm">
-                        <li class="dropdown-title">Select Month</li>
-                        <li><a href="#" class="dropdown-item">January</a></li>
-                        <li><a href="#" class="dropdown-item">February</a></li>
-                        <li><a href="#" class="dropdown-item">March</a></li>
-                        <li><a href="#" class="dropdown-item">April</a></li>
-                        <li><a href="#" class="dropdown-item">May</a></li>
-                        <li><a href="#" class="dropdown-item">June</a></li>
-                        <li><a href="#" class="dropdown-item">July</a></li>
-                        <li><a href="#" class="dropdown-item active">August</a></li>
-                        <li><a href="#" class="dropdown-item">September</a></li>
-                        <li><a href="#" class="dropdown-item">October</a></li>
-                        <li><a href="#" class="dropdown-item">November</a></li>
-                        <li><a href="#" class="dropdown-item">December</a></li>
-                    </ul>
-                    </div>
-                </div>
-                <div class="card-stats-items">
-                    <div class="card-stats-item">
-                    <div class="card-stats-item-count">24</div>
-                    <div class="card-stats-item-label">Pending</div>
-                    </div>
-                    <div class="card-stats-item">
-                    <div class="card-stats-item-count">12</div>
-                    <div class="card-stats-item-label">terkirim</div>
-                    </div>
-                    <div class="card-stats-item">
-                    <div class="card-stats-item-count">23</div>
-                    <div class="card-stats-item-label">selesai</div>
-                    </div>
-                </div>
-                </div>
-                <div class="card-icon shadow-primary bg-primary">
-                <i class="fas fa-archive"></i>
-                </div>
-                <div class="card-wrap">
-                <div class="card-header">
-                    <h4>Total Orders</h4>
-                </div>
-                <div class="card-body">
-                    59
-                </div>
-                </div>
-            </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-            <div class="card card-statistic-2">
-                <div class="card-chart">
-                <canvas id="balance-chart" height="80"></canvas>
-                </div>
-                <div class="card-icon shadow-primary bg-primary">
-                <i class="fas fa-dollar-sign"></i>
-                </div>
-                <div class="card-wrap">
-                <div class="card-header">
-                    <h4>Pemasukan</h4>
-                </div>
-                <div class="card-body">
-                    Rp. 12.000.000
-                </div>
-                </div>
-            </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-            <div class="card card-statistic-2">
-                <div class="card-chart">
-                <canvas id="sales-chart" height="80"></canvas>
-                </div>
-                <div class="card-icon shadow-primary bg-primary">
-                <i class="fas fa-shopping-bag"></i>
-                </div>
-                <div class="card-wrap">
-                <div class="card-header">
-                    <h4>Barang Terjual</h4>
-                </div>
-                <div class="card-body">
-                    400 pcs
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        <!-- table produk baru -->
-            <div class="row">
-                <div class="col">
+            <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                    <h4 class="card-title">Produk Saat Ini</h4>
-                    <div class="card-tools">
-                        <a href="#" style="float: right;" class="btn btn-sm btn-primary">More</a>
-                    </div>
+                        <h4>Total Penjualan</h4>
                     </div>
                     <div class="card-body">
-                      <div class="table-responsive">
-                        <table class="table table-striped" id="table-1">
-                          <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama</th>
-                                <th>Jenis</th>
-                                <th>Gambar</th>
-                                <th>Harga</th>
-                                <th>Stok</th>
-                                <th>Ukuran</th>
-                                <th>Variasi</th>
-                                <th>Deskripsi</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            
-                          </tbody>
-                        </table>
-                      </div>
+                        <h5 class="card-title">Rp{{ number_format($total_penjualan, 0, ',', '.') }}</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Total Pembelian</h4>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Rp{{ number_format($total_pembelian, 0, ',', '.') }}</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Stok Barang</h4>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ number_format($stok_barang, 0, ',', '.') }} pcs</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Laba Rugi</h4>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Rp{{ number_format($laba_rugi, 0, ',', '.') }}</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h4>Grafik Penjualan</h4>
+                    </div>
+                    <div class="card-body w-100">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h4>Grafik Pembelian</h4>
+                    </div>
+                    <div class="card-body w-100">
+                        <canvas id="purchaseChart"></canvas>
                     </div>
                 </div>
             </div>
         </div>
-  </section>
+    </section>
 </div>
 @endsection
+
 @section('custom_script')
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <!-- DataTables -->
 <script src="{{URL :: to('/')}}/asset/datatables/jquery.dataTables.min.js"></script>
 <script src="{{URL :: to('/')}}/asset/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="{{URL :: to('/')}}/asset/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="{{URL :: to('/')}}/asset/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
 <script>
-  $(function () {
-    $("#table-1").DataTable({
-      "responsive": true,
-      "autoWidth": false,
-    });  
-  });
+    $(function () {
+        $("#table-1").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+        });  
+    });
+</script>
+
+
+<script>
+    var ctx1 = document.getElementById('salesChart').getContext('2d');
+    var salesChart = new Chart(ctx1, {
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [{
+                label: 'Penjualan',
+                data: [12, 20, 4, 5, 2, 3, 8],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            width: 600,
+            height: 600,
+            scales: {
+                yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    stepSize: 2
+                }
+                }]
+            }
+        },
+    });
+
+    var ctx2 = document.getElementById('purchaseChart').getContext('2d');
+    var purchaseChart = new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [{
+                label: 'Pembelian',
+                data: [8, 12, 6, 7, 4, 3, 10],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            width: 600,
+            height: 600,
+            scales: {
+                yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    stepSize: 2
+                }
+                }]
+            }
+        },
+    });
 </script>
 @endsection
