@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PaketPenjualanBarangController;
 use App\Http\Controllers\PaketPenjualanController;
@@ -24,13 +27,21 @@ use App\Http\Controllers\PenjualanController;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.homeadmin');
-});
+//LOGIN
+Route::get('/', [AuthController::class, 'showLoginForm']);
+Route::get('/login', [AuthController::class, 'showLoginForm']);
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/homeadmin', [AdminController::class, 'dashboard'])->name('admin.homeadmin');
 
-Route::get('/admin', [AdminController::class, 'index']);
-Route::get('/customer', [AdminController::class, 'customer']);
-Route::get('/pesanan', [AdminController::class, 'pesanan']);
+
+
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('forgot-password');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('forgot-password.post');
+
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
+
 
 //HAKAKSES
 Route::get('/hakakses', [HakAksesController::class, 'indexdata']);

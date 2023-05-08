@@ -78,28 +78,31 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Kategori</a>
       </li> --}}
-      <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+      <li class="dropdown">
+      <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
         <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-        <div class="d-sm-none d-lg-inline-block">Hi! Admin</div> </a>
-        <div class="dropdown-menu dropdown-menu-right">
-          <div class="dropdown-title">Logged in 5 min ago</div>
-          <a href="features-profile.html" class="dropdown-item has-icon">
-            <i class="far fa-user"></i> Profile
-          </a>
-          <a href="features-activities.html" class="dropdown-item has-icon">
-            <i class="fas fa-bolt"></i> Activities
-          </a>
-          <a href="features-settings.html" class="dropdown-item has-icon">
-            <i class="fas fa-cog"></i> Settings
-          </a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item has-icon text-danger">
-            <form id="logout-form" action="" method="POST" >
-              @csrf
-              <button type="submit" class="fas fa-sign-out-alt">Logout</button> 
+        <div class="d-sm-none d-lg-inline-block">Hi! {{ Auth::user()->first_name }}</div>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right">
+        <div class="dropdown-title">Logged in {{ Carbon\Carbon::parse(Auth::user()->last_login_at)->diffForHumans() }}</div>
+        <a href="features-profile.html" class="dropdown-item has-icon">
+          <i class="far fa-user"></i> Profile
+        </a>
+        <a href="features-activities.html" class="dropdown-item has-icon">
+          <i class="fas fa-bolt"></i> Activities
+        </a>
+        <a href="features-settings.html" class="dropdown-item has-icon">
+          <i class="fas fa-cog"></i> Settings
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item has-icon text-danger">
+          <form id="logout-form" action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="fas fa-sign-out-alt">Logout</button>
           </form>
-          </a>
-        </div>
-      </li>
+        </a>
+      </div>
+    </li>
+
     </ul>
 </nav>
