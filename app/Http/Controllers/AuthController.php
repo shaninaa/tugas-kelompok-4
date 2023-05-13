@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\pengguna;
 use Auth;
 
 class AuthController extends Controller
@@ -19,15 +20,23 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+        $user = pengguna::where('email', $credentials['email'])->first();
 
-            return redirect()->route('admin.homeadmin');
+        if (!$user) {
+            return back()->withErrors([
+                'email' => 'Email tidak ditemukan',
+            ]);
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+        if (!Auth::attempt($credentials)) {
+            return back()->withErrors([
+                'password' => 'Password salah',
+            ]);
+        }
+
+        $request->session()->regenerate();
+
+        return redirect()->route('admin.homeadmin');
     }
 
     public function logout(Request $request)
